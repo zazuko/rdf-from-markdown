@@ -1,0 +1,35 @@
+@prefix code: <https://code.described.at/>.
+@prefix dash: <http://datashapes.org/dash#>.
+@prefix hydra: <http://www.w3.org/ns/hydra/core#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix schema: <http://schema.org/>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix ex: <http://example.org/>.
+
+ex:roleShape a sh:NodeShape;
+      sh:class ex:Role;
+      ex:tag "#role";
+      sh:property [ a sh:PropertyShape;
+                    sh:path rdf:type;
+                    sh:minCount 1;
+                    sh:maxCount 1;
+                    sh:in(ex:Role)
+                  ],
+                  [ a sh:PropertyShape;
+                    sh:path ex:who;
+                    sh:name "Who";
+                    sh:nodeKind sh:Literal
+                  ],
+                  [ a sh:PropertyShape;
+                    sh:path ex:purpose;
+                    sh:name "Purpose";
+                    sh:minCount 1;
+                    sh:maxCount 1;
+                    sh:nodeKind sh:Literal
+                  ],
+                  [ a sh:PropertyShape;
+                    sh:path ex:tasks;
+                    sh:name "Tasks";
+                    sh:nodeKind sh:Literal
+                  ].
