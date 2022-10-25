@@ -1,0 +1,44 @@
+{
+  "name": "rdf-markdown-shacl",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Extracts RDF from markdown using SHACL shapes",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "dependencies": {
+    "rdf-ext": "^2.0.1",
+    "remark-frontmatter": "^4.0.1",
+    "remark-gfm": "^3.0.1",
+    "remark-parse": "^10.0.1",
+    "remark-wiki-link": "^1.0.4",
+    "tree-utils": "^0.0.22",
+    "unified": "^10.1.2"
+  },
+  "devDependencies": {
+    "expect": "^28.1.1",
+    "expect-mocha-snapshot": "^2.1.5",
+    "mocha": "^10.0.0",
+    "n3": "^1.16.2",
+    "@rdfjs-elements/formats-pretty": "^0.5.1",
+    "get-stream": "^6.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zazuko/rdf-markdown-shacl.git"
+  },
+  "keywords": [
+    "SHACL",
+    "Markdown",
+    "RDF",
+    "Tools for thought",
+    "Knowledge management"
+  ],
+  "author": "Cristian Vasquez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zazuko/rdf-markdown-shacl/issues"
+  },
+  "homepage": "https://github.com/zazuko/rdf-markdown-shacl#readme"
+}
