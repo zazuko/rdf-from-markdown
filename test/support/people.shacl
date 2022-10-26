@@ -1,0 +1,39 @@
+@prefix code: <https://code.described.at/>.
+@prefix dash: <http://datashapes.org/dash#>.
+@prefix hydra: <http://www.w3.org/ns/hydra/core#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix schema: <http://schema.org/>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix ex: <http://example.org/>.
+@prefix mark: <http://markdown.org/>.
+
+ex:peopleShape a sh:NodeShape;
+  mark:tag "#people";
+  sh:class ex:People;
+  sh:property [ a sh:PropertyShape;
+    sh:path rdf:type;
+    sh:in(ex:People)
+  ], [ a sh:PropertyShape;
+    sh:path schema:hasPart;
+    sh:nodeKind sh:IRI;
+    sh:node ex:personShape
+  ].
+
+ex:personShape a sh:NodeShape;
+      sh:class ex:Person;
+      sh:name "Person";
+      sh:property [ a sh:PropertyShape;
+                    sh:path rdf:type;
+                    sh:in(ex:Person)
+                  ],
+                  [ a sh:PropertyShape;
+                    sh:path ex:name;
+                    sh:name "name";
+                    sh:nodeKind sh:Literal
+                  ].
+
+ex:age a sh:PropertyShape;
+       mark:match "age";
+       sh:path ex:hasAge;
+       sh:nodeKind sh:IRI.

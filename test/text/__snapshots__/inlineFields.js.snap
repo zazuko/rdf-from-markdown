@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`extractInlineFields **Rating**:: 6 1`] = `
+Object {
+  "property": "**Rating**",
+  "value": " 6",
+}
+`;
+
+exports[`extractInlineFields **Thoughts**:: It was decent. 1`] = `
+Object {
+  "property": "**Thoughts**",
+  "value": " It was decent.",
+}
+`;
+
+exports[`extractInlineFields [mood:: okay] | [length:: 2 hours] 1`] = `
+Array [
+  Object {
+    "property": "mood",
+    "value": " okay",
+  },
+  Object {
+    "property": "length",
+    "value": " 2 hours",
+  },
+]
+`;
+
+exports[`extractInlineFields inline :: field 1`] = `
+Object {
+  "property": "inline ",
+  "value": " field",
+}
+`;
+
+exports[`extractInlineFields nested ( inline :: field ) 1`] = `
+Array [
+  Object {
+    "property": " inline ",
+    "value": " field ",
+  },
+]
+`;

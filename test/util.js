@@ -15,8 +15,7 @@ async function prettyPrint (dataset, prefixes = {}) {
     prefixes: toPlain(prefixes),
   })
   const stream = await sink.import(dataset.toStream())
-  const result = await getStream(stream)
-  console.log(result)
+  return await getStream(stream)
 }
 
 export { prettyPrint }

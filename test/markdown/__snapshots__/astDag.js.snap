@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`astDag produces quads using  lists 1`] = `
+"@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix purl: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex: <http://example.org/> .
+@prefix dot: <http://dottriples.org/> .
+@prefix mark: <http://markdown.org/> .
+
+_:b13 ex:label \\"ROOT\\" ;
+	mark:contains [
+		mark:contains [
+			mark:header \\"## Bob (age :: 42)\\" ;
+		], [
+			mark:header \\"## Alice\\" ;
+			mark:text \\"age :: 22\\" ;
+		], [
+			mark:header \\"## Charlie\\" ;
+			mark:text \\"Charlie is a good guy.\\" ;
+		] ;
+		mark:header \\"# People of the world #people\\" ;
+		mark:tag \\"#people\\" ;
+	] .
+
+"
+`;
+
+exports[`astDag produces quads using embedded tag 1`] = `
+"@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix purl: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex: <http://example.org/> .
+@prefix dot: <http://dottriples.org/> .
+@prefix mark: <http://markdown.org/> .
+
+_:b1 ex:label \\"ROOT\\" ;
+	mark:contains [
+		mark:contains [
+			mark:contains [
+				mark:header \\"### Who\\" ;
+				mark:text \\"- Bob\\", \\"- Alice\\" ;
+			], [
+				mark:header \\"### Purpose\\" ;
+				mark:text \\"To make the best Pancakes in the world\\" ;
+			], [
+				mark:header \\"### Song\\" ;
+				mark:text \\"Pancakes, Pancakes !\\" ;
+			], [
+				mark:header \\"### Tasks\\" ;
+				mark:text \\"- Mix ingredients\\", \\"- Heat the pan\\", \\"- Prepare the Pancakes\\", \\"And a paragraph, explaining even more things\\" ;
+			] ;
+			mark:header \\"## Pancake maker #role\\" ;
+			mark:text \\"Some text for the Pancake maker\\" ;
+			mark:tag \\"#role\\" ;
+		], [
+			mark:contains [
+				mark:header \\"### Who\\" ;
+				mark:text \\"- Charlie\\" ;
+			], [
+				mark:header \\"### Purpose\\" ;
+				mark:text \\"Sell the Pancakes to the customers\\" ;
+			], [
+				mark:contains [
+					mark:header \\"# Some other topic\\" ;
+					mark:text \\"With a description\\" ;
+				] ;
+				mark:header \\"### Tasks\\" ;
+				mark:text \\"- Coordination of Pancake economic activities\\", \\"- Advertise the Pancakes\\" ;
+			] ;
+			mark:header \\"## Pancake seller #role\\" ;
+			mark:tag \\"#role\\" ;
+		] ;
+		mark:header \\"# Roles\\" ;
+		mark:text \\"The roles are the following: \\" ;
+	] .
+
+"
+`;
+
+exports[`astDag should produce a DAG from an ast 1`] = `
+"_:b1 <http://example.org/label> \\"ROOT\\" .
+_:b1 <http://markdown.org/contains> _:b2 .
+_:b2 <http://markdown.org/contains> _:b3 .
+_:b2 <http://markdown.org/contains> _:b8 .
+_:b2 <http://markdown.org/header> \\"# Roles\\" .
+_:b2 <http://markdown.org/text> \\"The roles are the following: \\" .
+_:b3 <http://markdown.org/contains> _:b4 .
+_:b3 <http://markdown.org/contains> _:b5 .
+_:b3 <http://markdown.org/contains> _:b6 .
+_:b3 <http://markdown.org/contains> _:b7 .
+_:b3 <http://markdown.org/header> \\"## Pancake maker #role\\" .
+_:b3 <http://markdown.org/text> \\"Some text for the Pancake maker\\" .
+_:b3 <http://markdown.org/tag> \\"#role\\" .
+_:b4 <http://markdown.org/header> \\"### Who\\" .
+_:b4 <http://markdown.org/text> \\"- Bob\\" .
+_:b4 <http://markdown.org/text> \\"- Alice\\" .
+_:b5 <http://markdown.org/header> \\"### Purpose\\" .
+_:b5 <http://markdown.org/text> \\"To make the best Pancakes in the world\\" .
+_:b6 <http://markdown.org/header> \\"### Song\\" .
+_:b6 <http://markdown.org/text> \\"Pancakes, Pancakes !\\" .
+_:b7 <http://markdown.org/header> \\"### Tasks\\" .
+_:b7 <http://markdown.org/text> \\"- Mix ingredients\\" .
+_:b7 <http://markdown.org/text> \\"- Heat the pan\\" .
+_:b7 <http://markdown.org/text> \\"- Prepare the Pancakes\\" .
+_:b7 <http://markdown.org/text> \\"And a paragraph, explaining even more things\\" .
+_:b8 <http://markdown.org/contains> _:b9 .
+_:b8 <http://markdown.org/contains> _:b10 .
+_:b8 <http://markdown.org/contains> _:b11 .
+_:b8 <http://markdown.org/header> \\"## Pancake seller #role\\" .
+_:b8 <http://markdown.org/tag> \\"#role\\" .
+_:b9 <http://markdown.org/header> \\"### Who\\" .
+_:b9 <http://markdown.org/text> \\"- Charlie\\" .
+_:b10 <http://markdown.org/header> \\"### Purpose\\" .
+_:b10 <http://markdown.org/text> \\"Sell the Pancakes to the customers\\" .
+_:b11 <http://markdown.org/contains> _:b12 .
+_:b11 <http://markdown.org/header> \\"### Tasks\\" .
+_:b11 <http://markdown.org/text> \\"- Coordination of Pancake economic activities\\" .
+_:b11 <http://markdown.org/text> \\"- Advertise the Pancakes\\" .
+_:b12 <http://markdown.org/header> \\"# Some other topic\\" .
+_:b12 <http://markdown.org/text> \\"With a description\\" .
+"
+`;
