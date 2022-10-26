@@ -1,8 +1,9 @@
 import rdf from 'rdf-ext'
 import ns from '../namespaces.js'
 import { getList, getText } from './ast.js'
+import {getTags} from '../text/tags.js'
 
-async function getAstGraph ({ astNode, fullText }) {
+async function getAstDag ({ astNode, fullText }) {
 
   const root = rdf.blankNode()
   const dataset = rdf.dataset()
@@ -28,6 +29,10 @@ async function getAstGraph ({ astNode, fullText }) {
       quads.push(rdf.quad(parentIri, ns.mark.contains, currentIri))
       quads.push(rdf.quad(currentIri, ns.mark.header, rdf.literal(text)))
 
+      for (const tag of getTags(text)){
+        quads.push(rdf.quad(currentIri, ns.mark.tag, rdf.literal(tag)))
+      }
+
       headersStack.push({
         iri: currentIri,
         depth: astNode.depth,
@@ -41,7 +46,6 @@ async function getAstGraph ({ astNode, fullText }) {
       } else if (astNode.type === 'paragraph') {
         quads.push(rdf.quad(currentUri, ns.mark.text, rdf.literal(text)))
       }
-
     }
     return currentUri
   }, root)
@@ -49,4 +53,4 @@ async function getAstGraph ({ astNode, fullText }) {
   return pointer
 }
 
-export { getAstGraph }
+export { getAstDag }

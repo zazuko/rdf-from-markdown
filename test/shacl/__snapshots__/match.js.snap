@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`match should produce quads from an astDag 1`] = `
+"_:b13 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/Role> .
+_:b13 <http://schema.org/name> \\"Pancake maker\\" .
+_:b13 <http://example.org/who> \\"Bob\\" .
+_:b13 <http://example.org/who> \\"Alice\\" .
+_:b13 <http://example.org/purpose> \\"To make the best Pancakes in the world\\" .
+_:b13 <http://example.org/tasks> \\"Mix ingredients\\" .
+_:b13 <http://example.org/tasks> \\"Heat the pan\\" .
+_:b13 <http://example.org/tasks> \\"Prepare the Pancakes\\" .
+_:b13 <http://example.org/tasks> \\"And a paragraph, explaining even more things\\" .
+_:b14 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/Role> .
+_:b14 <http://schema.org/name> \\"Pancake seller\\" .
+_:b14 <http://example.org/who> \\"Charlie\\" .
+_:b14 <http://example.org/purpose> \\"Sell the Pancakes to the customers\\" .
+_:b14 <http://example.org/tasks> \\"Coordination of Pancake economic activities\\" .
+_:b14 <http://example.org/tasks> \\"Advertise the Pancakes\\" .
+"
+`;

@@ -6,30 +6,31 @@
 @prefix sh: <http://www.w3.org/ns/shacl#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix ex: <http://example.org/>.
+@prefix mark: <http://markdown.org/>.
 
 ex:roleShape a sh:NodeShape;
       sh:class ex:Role;
-      ex:tag "#role";
+      sh:name "Role";
+      mark:tag "#role";
       sh:property [ a sh:PropertyShape;
                     sh:path rdf:type;
-                    sh:minCount 1;
-                    sh:maxCount 1;
                     sh:in(ex:Role)
                   ],
                   [ a sh:PropertyShape;
                     sh:path ex:who;
-                    sh:name "Who";
+                    sh:name "Persons";
+                    mark:matchText "Who";
                     sh:nodeKind sh:Literal
                   ],
                   [ a sh:PropertyShape;
                     sh:path ex:purpose;
                     sh:name "Purpose";
-                    sh:minCount 1;
-                    sh:maxCount 1;
+                    mark:matchText "Purpose";
                     sh:nodeKind sh:Literal
                   ],
                   [ a sh:PropertyShape;
                     sh:path ex:tasks;
                     sh:name "Tasks";
+                    mark:matchText "Tasks";
                     sh:nodeKind sh:Literal
                   ].
