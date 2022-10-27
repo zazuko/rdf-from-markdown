@@ -1,7 +1,7 @@
 import rdf from 'rdf-ext'
 import ns from '../namespaces.js'
 import { getList, getText } from './ast.js'
-import {getTags} from '../text/tags.js'
+import {extractTags} from '../text/tags.js'
 
 async function getAstDag ({ astNode, fullText }) {
 
@@ -29,7 +29,7 @@ async function getAstDag ({ astNode, fullText }) {
       quads.push(rdf.quad(parentIri, ns.mark.contains, currentIri))
       quads.push(rdf.quad(currentIri, ns.mark.header, rdf.literal(text)))
 
-      for (const tag of getTags(text)){
+      for (const tag of extractTags(text)){
         quads.push(rdf.quad(currentIri, ns.mark.tag, rdf.literal(tag)))
       }
 

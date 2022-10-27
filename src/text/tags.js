@@ -1,16 +1,12 @@
-// @TODO move to Regexp
-function getTags (str) {
-  return str.split(' ').
-    filter(x => !x.endsWith('#')).
-    filter(x => x.startsWith('#'))
+const HASH_REGEXP = /(?!\s)#[A-Za-z]\w*\b/g
+const user = /((?=[^\w!])@\w+\b)/g
+
+function extractTags (str) {
+  return [...str.matchAll(HASH_REGEXP)].map(x=>x[0])
 }
 
 function removeTags (str) {
-  let result = str
-  for (const tag of getTags(str)) {
-    result.replaceAll(tag, '')
-  }
-  return result
+  return str.replace(HASH_REGEXP, '')
 }
 
-export { getTags, removeTags }
+export { extractTags, removeTags }

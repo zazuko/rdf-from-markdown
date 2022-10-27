@@ -47,7 +47,7 @@ _:b1 ex:label \\"ROOT\\" ;
 		mark:contains [
 			mark:contains [
 				mark:header \\"### Who\\" ;
-				mark:text \\"- Bob\\", \\"- Alice\\" ;
+				mark:text \\"- Bob (action::prepare)\\", \\"- Alice (action::cook)\\" ;
 			], [
 				mark:header \\"### Purpose\\" ;
 				mark:text \\"To make the best Pancakes in the world\\" ;
@@ -83,49 +83,5 @@ _:b1 ex:label \\"ROOT\\" ;
 		mark:text \\"The roles are the following: \\" ;
 	] .
 
-"
-`;
-
-exports[`astDag should produce a DAG from an ast 1`] = `
-"_:b1 <http://example.org/label> \\"ROOT\\" .
-_:b1 <http://markdown.org/contains> _:b2 .
-_:b2 <http://markdown.org/contains> _:b3 .
-_:b2 <http://markdown.org/contains> _:b8 .
-_:b2 <http://markdown.org/header> \\"# Roles\\" .
-_:b2 <http://markdown.org/text> \\"The roles are the following: \\" .
-_:b3 <http://markdown.org/contains> _:b4 .
-_:b3 <http://markdown.org/contains> _:b5 .
-_:b3 <http://markdown.org/contains> _:b6 .
-_:b3 <http://markdown.org/contains> _:b7 .
-_:b3 <http://markdown.org/header> \\"## Pancake maker #role\\" .
-_:b3 <http://markdown.org/text> \\"Some text for the Pancake maker\\" .
-_:b3 <http://markdown.org/tag> \\"#role\\" .
-_:b4 <http://markdown.org/header> \\"### Who\\" .
-_:b4 <http://markdown.org/text> \\"- Bob\\" .
-_:b4 <http://markdown.org/text> \\"- Alice\\" .
-_:b5 <http://markdown.org/header> \\"### Purpose\\" .
-_:b5 <http://markdown.org/text> \\"To make the best Pancakes in the world\\" .
-_:b6 <http://markdown.org/header> \\"### Song\\" .
-_:b6 <http://markdown.org/text> \\"Pancakes, Pancakes !\\" .
-_:b7 <http://markdown.org/header> \\"### Tasks\\" .
-_:b7 <http://markdown.org/text> \\"- Mix ingredients\\" .
-_:b7 <http://markdown.org/text> \\"- Heat the pan\\" .
-_:b7 <http://markdown.org/text> \\"- Prepare the Pancakes\\" .
-_:b7 <http://markdown.org/text> \\"And a paragraph, explaining even more things\\" .
-_:b8 <http://markdown.org/contains> _:b9 .
-_:b8 <http://markdown.org/contains> _:b10 .
-_:b8 <http://markdown.org/contains> _:b11 .
-_:b8 <http://markdown.org/header> \\"## Pancake seller #role\\" .
-_:b8 <http://markdown.org/tag> \\"#role\\" .
-_:b9 <http://markdown.org/header> \\"### Who\\" .
-_:b9 <http://markdown.org/text> \\"- Charlie\\" .
-_:b10 <http://markdown.org/header> \\"### Purpose\\" .
-_:b10 <http://markdown.org/text> \\"Sell the Pancakes to the customers\\" .
-_:b11 <http://markdown.org/contains> _:b12 .
-_:b11 <http://markdown.org/header> \\"### Tasks\\" .
-_:b11 <http://markdown.org/text> \\"- Coordination of Pancake economic activities\\" .
-_:b11 <http://markdown.org/text> \\"- Advertise the Pancakes\\" .
-_:b12 <http://markdown.org/header> \\"# Some other topic\\" .
-_:b12 <http://markdown.org/text> \\"With a description\\" .
 "
 `;

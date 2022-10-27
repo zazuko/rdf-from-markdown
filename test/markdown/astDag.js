@@ -2,11 +2,9 @@ import { expect } from 'expect'
 
 import toMatchSnapshot from 'expect-mocha-snapshot'
 import { resolve } from 'path'
-import rdf from 'rdf-ext'
 import { getAstDag } from '../../src/markdown/astDag.js'
 import { createMarkdownParser } from '../../src/markdown/markdownParser.js'
-import { doShaclMatch } from '../../src/shacl/match.js'
-import { getClownface, getText } from '../support/readFiles.js'
+import { getText } from '../support/readFiles.js'
 
 expect.extend({ toMatchSnapshot })
 

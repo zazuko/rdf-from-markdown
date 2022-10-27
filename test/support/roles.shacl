@@ -11,26 +11,31 @@
 ex:roleShape a sh:NodeShape;
       sh:class ex:Role;
       sh:name "Role";
-      mark:tag "#role";
+      mark:matchHashTag "#role";
       sh:property [ a sh:PropertyShape;
                     sh:path rdf:type;
                     sh:in(ex:Role)
                   ],
                   [ a sh:PropertyShape;
-                    sh:path ex:who;
-                    sh:name "Person";
-                    mark:matchText "Who";
+                    sh:name "Assignment";
+                    sh:path ex:assignment;
+                    mark:matchHeader "Who";
                     sh:nodeKind sh:IRI
                   ],
                   [ a sh:PropertyShape;
-                    sh:path ex:purpose;
                     sh:name "Purpose";
-                    mark:matchText "Purpose";
+                    sh:path ex:purpose;
+                    mark:matchHeader "Purpose";
                     sh:nodeKind sh:Literal
                   ],
                   [ a sh:PropertyShape;
+                    sh:name "Task";
+                    mark:matchHeader "Tasks";
                     sh:path ex:tasks;
-                    sh:name "Tasks";
-                    mark:matchText "Tasks";
                     sh:nodeKind sh:Literal
                   ].
+
+ex:actionProp a mark:InlineMatcher;
+               mark:matchInlineProperty "action";
+               sh:path ex:action;
+               sh:nodeKind sh:Literal.

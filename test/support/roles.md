@@ -12,8 +12,8 @@ Some text for the Pancake maker
 
 ### Who
 
-- Bob
-- Alice
+- Bob (action::prepare)
+- Alice (action::cook)
 
 ### Purpose
 

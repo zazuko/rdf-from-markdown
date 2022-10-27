@@ -11,9 +11,6 @@ exports[`match produces quads using  lists 1`] = `
 @prefix ex: <http://example.org/> .
 @prefix dot: <http://dottriples.org/> .
 @prefix mark: <http://markdown.org/> .
-
-<http://example.org/named/1> a ex:People .
-
 "
 `;
 
@@ -31,17 +28,19 @@ exports[`match produces quads using embedded tag 1`] = `
 
 <http://example.org/named/1> a ex:Role ;
 	schema:name \\"Pancake maker\\" ;
-	ex:who <http://example.org/named/2>, <http://example.org/named/3> ;
+	ex:assignment <http://example.org/named/2>, <http://example.org/named/3> ;
 	ex:purpose \\"To make the best Pancakes in the world\\" ;
 	ex:tasks \\"Mix ingredients\\", \\"Heat the pan\\", \\"Prepare the Pancakes\\", \\"And a paragraph, explaining even more things\\" .
 
-<http://example.org/named/2> rdf:label \\"Bob (action::prepare)\\" .
+<http://example.org/named/2> rdf:label \\"Bob\\" ;
+	ex:action \\"prepare\\" .
 
-<http://example.org/named/3> rdf:label \\"Alice (action::cook)\\" .
+<http://example.org/named/3> rdf:label \\"Alice\\" ;
+	ex:action \\"cook\\" .
 
 <http://example.org/named/4> a ex:Role ;
 	schema:name \\"Pancake seller\\" ;
-	ex:who <http://example.org/named/5> ;
+	ex:assignment <http://example.org/named/5> ;
 	ex:purpose \\"Sell the Pancakes to the customers\\" ;
 	ex:tasks \\"Coordination of Pancake economic activities\\", \\"Advertise the Pancakes\\" .
 
