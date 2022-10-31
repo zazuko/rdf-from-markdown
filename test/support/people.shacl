@@ -9,10 +9,11 @@
 @prefix mark: <http://markdown.org/>.
 
 ex:peopleShape a sh:NodeShape;
-  mark:matchAll mark:Root;
+  mark:matchType mark:Root;
   sh:class ex:People;
   sh:property [ a sh:PropertyShape;
-    mark:matchAll mark:header;
+    mark:matchHeader mark:any;
+    mark:include mark:header;
     sh:path schema:hasPart;
     sh:nodeKind sh:IRI;
     sh:node ex:personShape
@@ -24,6 +25,8 @@ ex:personShape a sh:NodeShape;
       sh:property [ a sh:PropertyShape;
                     sh:path ex:name;
                     sh:name "name";
+                    mark:include mark:item;
+                    mark:include mark:listItem;
                     sh:nodeKind sh:Literal
       ].
 

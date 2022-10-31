@@ -85,10 +85,6 @@ _:b1 a mark:Root ;
 				mark:header \\"### Purpose\\" ;
 				mark:item \\"Sell the Pancakes to the customers\\" ;
 			], [
-				mark:contains [
-					mark:header \\"# Some other topic\\" ;
-					mark:item \\"With a description\\" ;
-				] ;
 				mark:header \\"### Tasks\\" ;
 				mark:listItem \\"- Coordination of Pancake economic activities\\", \\"- Advertise the Pancakes\\" ;
 			] ;
@@ -97,6 +93,9 @@ _:b1 a mark:Root ;
 		] ;
 		mark:header \\"# Roles\\" ;
 		mark:item \\"The roles are the following: \\" ;
+	], [
+		mark:header \\"# Some other topic\\" ;
+		mark:item \\"With a description\\" ;
 	] .
 
 "
@@ -116,19 +115,17 @@ exports[`astDag produces quads using lists 1`] = `
 
 _:b14 a mark:Root ;
 	mark:contains [
+		mark:header \\"# Alice\\" ;
+		mark:item \\"age :: 22\\" ;
+	], [
 		mark:contains [
-			mark:contains [
-				mark:contains [
-					mark:header \\"# Charlie\\" ;
-					mark:item \\"Charlie is a good guy. (age :: 56)\\" ;
-				] ;
-				mark:header \\"# Alice\\" ;
-				mark:item \\"age :: 22\\" ;
-			] ;
 			mark:header \\"## Interests\\" ;
 			mark:listItem \\"- Eating\\" ;
 		] ;
 		mark:header \\"# Bob (age :: 42)\\" ;
+	], [
+		mark:header \\"# Charlie\\" ;
+		mark:item \\"Charlie is a good guy. (age :: 56)\\" ;
 	] .
 
 "

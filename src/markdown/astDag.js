@@ -12,17 +12,21 @@ async function getAstDag ({ astNode, fullText }) {
   const quads = []
   pointer.addOut(ns.rdf.type,ns.mark.Root)
 
-  let headersStack = []
+  let headersStack = [{
+    iri: root,
+    depth: 0,
+  }]
+
   astNode.children.reduce((currentUri, astNode) => {
     const text = getText({ astNode, fullText })
 
     if (astNode.type === 'heading') {
       const currentIri = rdf.blankNode()
-
       const ancesters = headersStack.filter(x => x.depth < astNode.depth)
       if (ancesters.length) {
         headersStack = headersStack.filter(x => x.depth < astNode.depth)
       }
+
       const parentIri = ancesters.length
         ? ancesters[ancesters.length - 1].iri
         : currentUri

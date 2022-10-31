@@ -110,5 +110,19 @@ exports[`match produces quads using lists 1`] = `
 @prefix ex: <http://example.org/> .
 @prefix dot: <http://dottriples.org/> .
 @prefix mark: <http://markdown.org/> .
+
+<http://example.org/named/1> a ex:People ;
+	schema:hasPart <http://example.org/named/2>, <http://example.org/named/3>, <http://example.org/named/4> .
+
+<http://example.org/named/2> a ex:Person ;
+	schema:name \\"Alice\\" .
+
+<http://example.org/named/3> a ex:Person ;
+	schema:name \\"Bob\\" ;
+	ex:hasAge \\"42\\" .
+
+<http://example.org/named/4> a ex:Person ;
+	schema:name \\"Charlie\\" .
+
 "
 `;
