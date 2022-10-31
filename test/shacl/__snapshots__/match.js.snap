@@ -12,7 +12,36 @@ exports[`match can use a taxonomy (recursive patterns) 1`] = `
 @prefix dot: <http://dottriples.org/> .
 @prefix mark: <http://markdown.org/> .
 
-<http://example.org/named/1> a ex:Thing .
+<http://example.org/named/1> a ex:Thing ;
+	ex:hasChildren <http://example.org/named/2> .
+
+<http://example.org/named/2> a ex:Thing ;
+	ex:hasChildren <http://example.org/named/3>, <http://example.org/named/7> ;
+	rdf:label \\"Things\\" .
+
+<http://example.org/named/3> a ex:Thing ;
+	ex:hasChildren <http://example.org/named/4>, <http://example.org/named/6> ;
+	rdf:label \\"Food\\" .
+
+<http://example.org/named/4> a ex:Thing ;
+	ex:hasChildren <http://example.org/named/5> ;
+	rdf:label \\"Red\\" .
+
+<http://example.org/named/5> a ex:Thing ;
+	rdf:label \\"Tomato\\" .
+
+<http://example.org/named/6> a ex:Thing ;
+	rdf:label \\"Green\\" .
+
+<http://example.org/named/7> a ex:Thing ;
+	ex:hasChildren <http://example.org/named/8>, <http://example.org/named/9> ;
+	rdf:label \\"Tools\\" .
+
+<http://example.org/named/8> a ex:Thing ;
+	rdf:label \\"Metal\\" .
+
+<http://example.org/named/9> a ex:Thing ;
+	rdf:label \\"Wood\\" .
 
 "
 `;

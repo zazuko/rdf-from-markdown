@@ -19,21 +19,64 @@ function produceQuads ({ uri, astPointer, shapePointer, uriResolver }) {
   quads.push(rdf.quad(uri, ns.rdf.type, entityType))
 
   for (const property of shapePointer.out(ns.sh.property).terms) {
-
     const propertyCF = shapePointer.node(property)
-    const matchHeader = propertyCF.out(ns.mark.matchHeader).term
+    quads.push(...getMatchHeader(
+      { uri, propertyCF, uriResolver, astPointer, shapePointer }))
+    quads.push(...getMatchAllHeaders(
+      { uri, propertyCF, uriResolver, astPointer, shapePointer }))
+  }
+  return quads
+}
 
-    if (matchHeader) {
-      const astHeader = astPointer.out(ns.mark.header).term
-      quads.push(rdf.quad(uri, ns.schema.name, normalizeLiteral(astHeader)))
-      for (const childUri of astPointer.out(ns.mark.contains).terms) {
-        const childPointer = astPointer.node(childUri)
-        if (isNormalizedMatch(childPointer.out(ns.mark.header).term,
-          matchHeader)) {
-          for (const text of childPointer.out(ns.mark.text).terms) {
-            quads.push(
-              ...getValue({ uri, propertyCF, uriResolver, text, shapePointer }))
-          }
+function getMatchAllHeaders ({
+  uri, propertyCF, uriResolver, astPointer, shapePointer,
+}) {
+  const quads = []
+  for (const termToMatch of propertyCF.out(ns.mark.matchAll).terms) {
+    for (const childUri of astPointer.out(ns.mark.contains).terms) {
+
+      const childAstPointer = astPointer.node(childUri)
+
+      for (const text of childAstPointer.out(termToMatch).terms) {
+        quads.push(...getValue({
+          uri,
+          propertyCF,
+          uriResolver,
+          text,
+          astPointer: childAstPointer,
+          shapePointer,
+        }))
+      }
+    }
+  }
+  return quads
+}
+
+function getMatchHeader ({
+  uri,
+  propertyCF,
+  uriResolver,
+  astPointer,
+  shapePointer,
+}) {
+  const quads = []
+  const matchHeader = propertyCF.out(ns.mark.matchHeader).term
+  if (matchHeader) {
+    const astHeader = astPointer.out(ns.mark.header).term
+    quads.push(rdf.quad(uri, ns.schema.name, normalizeLiteral(astHeader)))
+    for (const childUri of astPointer.out(ns.mark.contains).terms) {
+      const childAstPointer = astPointer.node(childUri)
+      if (isNormalizedMatch(childAstPointer.out(ns.mark.header).term,
+        matchHeader)) {
+        for (const text of childAstPointer.out(ns.mark.text).terms) {
+          quads.push(...getValue({
+            uri,
+            propertyCF,
+            uriResolver,
+            text,
+            astPointer: childAstPointer,
+            shapePointer,
+          }))
         }
       }
     }
@@ -41,11 +84,19 @@ function produceQuads ({ uri, astPointer, shapePointer, uriResolver }) {
   return quads
 }
 
-function getValue ({ uri, propertyCF, uriResolver, text, shapePointer }) {
+function getValue ({
+  uri,
+  propertyCF,
+  uriResolver,
+  text,
+  astPointer,
+  shapePointer,
+}) {
   const path = propertyCF.out(ns.sh.path).term
   const quads = []
   const nodeKind = propertyCF.out(ns.sh.nodeKind).term
   const normalizedLiteral = normalizeLiteral(text)
+
   if (nodeKind.equals(ns.sh.Literal)) {
     quads.push(rdf.quad(uri, path, normalizedLiteral))
   } else if (nodeKind.equals(ns.sh.IRI)) {
@@ -55,6 +106,16 @@ function getValue ({ uri, propertyCF, uriResolver, text, shapePointer }) {
     const inlineQuads = getQuadsFromInline(
       { uri: childUri, literal: text, shapes: shapePointer.any() })
     quads.push(...inlineQuads)
+
+    const node = propertyCF.out(ns.sh.node).term
+    if (node) {
+      quads.push(...produceQuads({
+        uri: childUri,
+        astPointer,
+        shapePointer: shapePointer.node(node),
+        uriResolver,
+      }))
+    }
   }
   return quads
 }

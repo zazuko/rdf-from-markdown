@@ -12,11 +12,6 @@ ex:categoryShape a sh:NodeShape;
   mark:matchType mark:Root;
   sh:class ex:Thing;
   sh:property [ a sh:PropertyShape;
-    mark:match mark:currentHeaderValue;
-    sh:path ex:label;
-    sh:nodeKind sh:Literal
-  ];
-  sh:property [ a sh:PropertyShape;
     mark:matchAll mark:header;
     sh:path ex:hasChildren;
     sh:nodeKind sh:IRI;
