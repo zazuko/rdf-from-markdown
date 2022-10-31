@@ -9,7 +9,7 @@
 @prefix mark: <http://markdown.org/>.
 
 ex:peopleShape a sh:NodeShape;
-  mark:matchAll mark:root;
+  mark:matchAll mark:Root;
   sh:class ex:People;
   sh:property [ a sh:PropertyShape;
     mark:matchAll mark:header;

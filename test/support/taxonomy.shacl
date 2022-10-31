@@ -9,15 +9,15 @@
 @prefix mark: <http://markdown.org/>.
 
 ex:categoryShape a sh:NodeShape;
-  mark:matchAll mark:root;
+  mark:matchType mark:Root;
   sh:class ex:Thing;
   sh:property [ a sh:PropertyShape;
-    mark:match mark:currentValue
+    mark:match mark:currentHeaderValue;
     sh:path ex:label;
     sh:nodeKind sh:Literal
   ];
   sh:property [ a sh:PropertyShape;
-    mark:matchAll mark:header
+    mark:matchAll mark:header;
     sh:path ex:hasChildren;
     sh:nodeKind sh:IRI;
     sh:node ex:categoryShape

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`astDag produces quads using  lists 1`] = `
+exports[`astDag can use a taxonomy (recursive patterns) 1`] = `
 "@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix schema: <http://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
@@ -12,21 +12,31 @@ exports[`astDag produces quads using  lists 1`] = `
 @prefix dot: <http://dottriples.org/> .
 @prefix mark: <http://markdown.org/> .
 
-_:b14 ex:label \\"ROOT\\" ;
+_:b19 a mark:Root ;
 	mark:contains [
 		mark:contains [
 			mark:contains [
 				mark:contains [
-					mark:header \\"# Charlie\\" ;
-					mark:text \\"Charlie is a good guy. (age :: 56)\\" ;
+					mark:header \\"#### Tomato\\" ;
+					mark:text \\"A tomato most of the time is red in Europe\\" ;
 				] ;
-				mark:header \\"# Alice\\" ;
-				mark:text \\"age :: 22\\" ;
+				mark:header \\"### Red\\" ;
+			], [
+				mark:header \\"### Green\\" ;
+				mark:text \\"- Lettuce\\" ;
 			] ;
-			mark:header \\"## Interests\\" ;
-			mark:text \\"- Eating\\" ;
+			mark:header \\"## Food\\" ;
+		], [
+			mark:contains [
+				mark:header \\"### Metal\\" ;
+				mark:text \\"* Screwdriver\\", \\"* Hammer\\" ;
+			], [
+				mark:header \\"### Wood\\" ;
+				mark:text \\"- 1\\", \\"- 2\\", \\"- 3\\" ;
+			] ;
+			mark:header \\"## Tools\\" ;
 		] ;
-		mark:header \\"# Bob (age :: 42)\\" ;
+		mark:header \\"# Things\\" ;
 	] .
 
 "
@@ -44,7 +54,7 @@ exports[`astDag produces quads using embedded tag 1`] = `
 @prefix dot: <http://dottriples.org/> .
 @prefix mark: <http://markdown.org/> .
 
-_:b1 ex:label \\"ROOT\\" ;
+_:b1 a mark:Root ;
 	mark:contains [
 		mark:contains [
 			mark:contains [
@@ -86,6 +96,38 @@ _:b1 ex:label \\"ROOT\\" ;
 		] ;
 		mark:header \\"# Roles\\" ;
 		mark:text \\"The roles are the following: \\" ;
+	] .
+
+"
+`;
+
+exports[`astDag produces quads using lists 1`] = `
+"@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix purl: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex: <http://example.org/> .
+@prefix dot: <http://dottriples.org/> .
+@prefix mark: <http://markdown.org/> .
+
+_:b14 a mark:Root ;
+	mark:contains [
+		mark:contains [
+			mark:contains [
+				mark:contains [
+					mark:header \\"# Charlie\\" ;
+					mark:text \\"Charlie is a good guy. (age :: 56)\\" ;
+				] ;
+				mark:header \\"# Alice\\" ;
+				mark:text \\"age :: 22\\" ;
+			] ;
+			mark:header \\"## Interests\\" ;
+			mark:text \\"- Eating\\" ;
+		] ;
+		mark:header \\"# Bob (age :: 42)\\" ;
 	] .
 
 "

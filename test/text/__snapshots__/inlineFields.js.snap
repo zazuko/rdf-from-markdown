@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`extractInlineFields --> **Rating**:: 6 1`] = `
+exports[`extractInlineFields **Rating**:: 6 1`] = `
 Array [
   Object {
     "property": "**Rating**",
@@ -10,7 +10,7 @@ Array [
 ]
 `;
 
-exports[`extractInlineFields --> **Thoughts**:: It was decent. 1`] = `
+exports[`extractInlineFields **Thoughts**:: It was decent. 1`] = `
 Array [
   Object {
     "property": "**Thoughts**",
@@ -20,7 +20,7 @@ Array [
 ]
 `;
 
-exports[`extractInlineFields --> [mood:: okay] | [length:: 2 hours] 1`] = `
+exports[`extractInlineFields [mood:: okay] | [length:: 2 hours] 1`] = `
 Array [
   Object {
     "property": "mood",
@@ -35,9 +35,9 @@ Array [
 ]
 `;
 
-exports[`extractInlineFields --> No inline fields 1`] = `Array []`;
+exports[`extractInlineFields No inline fields 1`] = `Array []`;
 
-exports[`extractInlineFields --> inline :: field 1`] = `
+exports[`extractInlineFields inline :: field 1`] = `
 Array [
   Object {
     "property": "inline ",
@@ -47,7 +47,7 @@ Array [
 ]
 `;
 
-exports[`extractInlineFields --> nested ( inline :: field ) 1`] = `
+exports[`extractInlineFields nested ( inline :: field ) 1`] = `
 Array [
   Object {
     "property": " inline ",
@@ -57,14 +57,14 @@ Array [
 ]
 `;
 
-exports[`removeInlineFields --> **Rating**:: 6 1`] = `""`;
+exports[`removeInlineFields **Rating**:: 6 1`] = `""`;
 
-exports[`removeInlineFields --> **Thoughts**:: It was decent. 1`] = `""`;
+exports[`removeInlineFields **Thoughts**:: It was decent. 1`] = `""`;
 
-exports[`removeInlineFields --> [mood:: okay] | [length:: 2 hours] 1`] = `" | "`;
+exports[`removeInlineFields [mood:: okay] | [length:: 2 hours] 1`] = `" | "`;
 
-exports[`removeInlineFields --> No inline fields 1`] = `"No inline fields"`;
+exports[`removeInlineFields No inline fields 1`] = `"No inline fields"`;
 
-exports[`removeInlineFields --> inline :: field 1`] = `""`;
+exports[`removeInlineFields inline :: field 1`] = `""`;
 
-exports[`removeInlineFields --> nested ( inline :: field ) 1`] = `"nested "`;
+exports[`removeInlineFields nested ( inline :: field ) 1`] = `"nested "`;

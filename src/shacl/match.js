@@ -21,44 +21,51 @@ function produceQuads ({ uri, astPointer, shapePointer, uriResolver }) {
   for (const property of shapePointer.out(ns.sh.property).terms) {
 
     const propertyCF = shapePointer.node(property)
-    const path = propertyCF.out(ns.sh.path).term
     const matchHeader = propertyCF.out(ns.mark.matchHeader).term
-    const nodeKind = propertyCF.out(ns.sh.nodeKind).term
 
-    if (path && matchHeader) {
+    if (matchHeader) {
       const astHeader = astPointer.out(ns.mark.header).term
       quads.push(rdf.quad(uri, ns.schema.name, normalizeLiteral(astHeader)))
       for (const childUri of astPointer.out(ns.mark.contains).terms) {
         const childPointer = astPointer.node(childUri)
-        if (isNormalizedMatch(childPointer.out(ns.mark.header).term, matchHeader)) {
-
+        if (isNormalizedMatch(childPointer.out(ns.mark.header).term,
+          matchHeader)) {
           for (const text of childPointer.out(ns.mark.text).terms) {
-            const normalizedLiteral = normalizeLiteral(text)
-            if (nodeKind.equals(ns.sh.Literal)) {
-              quads.push(rdf.quad(uri, path, normalizedLiteral))
-            } else if (nodeKind.equals(ns.sh.IRI)) {
-              const childUri = uriResolver.mintUri(normalizedLiteral)
-              quads.push(rdf.quad(uri, path, childUri))
-              quads.push(rdf.quad(childUri, ns.rdf.label, normalizedLiteral))
-              const inlineQuads = getQuadsFromInline({uri:childUri,literal:text, shapes:shapePointer.any()})
-              quads.push(...inlineQuads)
-            }
+            quads.push(
+              ...getValue({ uri, propertyCF, uriResolver, text, shapePointer }))
           }
-
         }
       }
-// ## TODO, do recursion when complex patterns emerge
     }
   }
   return quads
 }
 
-function getQuadsFromInline({uri,literal,shapes}){
+function getValue ({ uri, propertyCF, uriResolver, text, shapePointer }) {
+  const path = propertyCF.out(ns.sh.path).term
+  const quads = []
+  const nodeKind = propertyCF.out(ns.sh.nodeKind).term
+  const normalizedLiteral = normalizeLiteral(text)
+  if (nodeKind.equals(ns.sh.Literal)) {
+    quads.push(rdf.quad(uri, path, normalizedLiteral))
+  } else if (nodeKind.equals(ns.sh.IRI)) {
+    const childUri = uriResolver.mintUri(normalizedLiteral)
+    quads.push(rdf.quad(uri, path, childUri))
+    quads.push(rdf.quad(childUri, ns.rdf.label, normalizedLiteral))
+    const inlineQuads = getQuadsFromInline(
+      { uri: childUri, literal: text, shapes: shapePointer.any() })
+    quads.push(...inlineQuads)
+  }
+  return quads
+}
+
+function getQuadsFromInline ({ uri, literal, shapes }) {
 
   const result = []
   for (const inlineField of extractInlineFields(literal.value)) {
     const normalizedProperty = rdf.literal(normalizeText(inlineField.property))
-    for (const current of shapes.dataset.match(null, ns.mark.matchInlineProperty, normalizedProperty)) {
+    for (const current of shapes.dataset.match(null,
+      ns.mark.matchInlineProperty, normalizedProperty)) {
       const normalizedValue = rdf.literal(normalizeText(inlineField.value))
       const path = shapes.node(current.subject).out(ns.sh.path).term
       result.push(rdf.quad(uri,path,normalizedValue))
@@ -67,14 +74,22 @@ function getQuadsFromInline({uri,literal,shapes}){
   return result
 }
 
-
-
-function getShapesByTag ({ tag, shapes }) {
+function getShapesByProperty ({ property, value, shapes }) {
   const matches = []
-  for (const current of shapes.dataset.match(null, ns.mark.matchHashTag, tag)) {
+  for (const current of shapes.dataset.match(null, property, value)) {
     matches.push(shapes.node(current.subject))
   }
   return matches
+}
+
+function getShapesByTag ({ tag, shapes }) {
+  return getShapesByProperty(
+    { property: ns.mark.matchHashTag, value: tag, shapes })
+}
+
+function getShapesByType ({ type, shapes }) {
+  return getShapesByProperty(
+    { property: ns.mark.matchType, value: type, shapes })
 }
 
 const defaultUriResolver = {
@@ -84,17 +99,25 @@ const defaultUriResolver = {
 }
 
 function doShaclMatch ({
-  astPointer,
-  shapes,
-  uriResolver = defaultUriResolver,
+  astPointer, shapes, uriResolver = defaultUriResolver,
 }) {
   const result = []
+
+  for (const type of astPointer.out(ns.rdf.type).terms) {
+    for (const shapeRoot of getShapesByType({ type, shapes })) {
+      const uri = uriResolver.mintUri(type)
+      const quads = produceQuads(
+        { uri, astPointer, shapePointer: shapeRoot, uriResolver })
+      result.push(...quads)
+    }
+  }
 
   // Check if a tag is found
   for (const tag of astPointer.out(ns.mark.tag).terms) {
     for (const shapeRoot of getShapesByTag({ tag, shapes })) {
       const uri = uriResolver.mintUri(tag)
-      const quads = produceQuads({ uri, astPointer, shapePointer: shapeRoot, uriResolver })
+      const quads = produceQuads(
+        { uri, astPointer, shapePointer: shapeRoot, uriResolver })
       result.push(...quads)
     }
   }

@@ -13,7 +13,7 @@ const tweets = [
 
 expect.extend({ toMatchSnapshot })
 
-describe('extractTags-->', async function () {
+describe('extractTags', async function () {
   for (const current of tweets) {
     it(current, async function () {
       const tags = extractTags(current)
@@ -22,7 +22,7 @@ describe('extractTags-->', async function () {
   }
 })
 
-describe('removeTags-->', async function () {
+describe('removeTags', async function () {
   for (const current of tweets) {
     it(current, async function () {
 

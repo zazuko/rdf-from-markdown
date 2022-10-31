@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`match produces quads using  lists 1`] = `
+exports[`match can use a taxonomy (recursive patterns) 1`] = `
 "@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix schema: <http://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
@@ -11,6 +11,9 @@ exports[`match produces quads using  lists 1`] = `
 @prefix ex: <http://example.org/> .
 @prefix dot: <http://dottriples.org/> .
 @prefix mark: <http://markdown.org/> .
+
+<http://example.org/named/1> a ex:Thing .
+
 "
 `;
 
@@ -46,5 +49,19 @@ exports[`match produces quads using embedded tag 1`] = `
 
 <http://example.org/named/5> rdf:label \\"Charlie\\" .
 
+"
+`;
+
+exports[`match produces quads using lists 1`] = `
+"@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix purl: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex: <http://example.org/> .
+@prefix dot: <http://dottriples.org/> .
+@prefix mark: <http://markdown.org/> .
 "
 `;

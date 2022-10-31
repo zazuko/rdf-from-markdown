@@ -16,7 +16,7 @@ const text = [
 
 expect.extend({ toMatchSnapshot })
 
-describe('normalizeText-->', async function () {
+describe('normalizeText', async function () {
   for (const current of text) {
     it(current, async function () {
       const result = normalizeText(current)

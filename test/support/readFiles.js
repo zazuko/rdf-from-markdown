@@ -7,10 +7,19 @@ async function getText ({ path }) {
   return buffer.toString()
 }
 
+async function toQuads ({ path }) {
+  try {
+    const parser = new Parser()
+    const str = await getText({ path })
+    return parser.parse(str)
+  } catch (error) {
+    throw Error(`${path}\n${error.message}`)
+  }
+
+}
+
 async function getClownface ({ path }) {
-  const parser = new Parser()
-  const str = await getText({ path })
-  const quads = parser.parse(str)
+  const quads = await toQuads({ path })
   const dataset = rdf.dataset().addAll(quads)
   return rdf.clownface({ dataset })
 }

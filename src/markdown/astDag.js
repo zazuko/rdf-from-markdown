@@ -5,11 +5,12 @@ import {extractTags} from '../text/tags.js'
 
 async function getAstDag ({ astNode, fullText }) {
 
-  const root = rdf.blankNode()
   const dataset = rdf.dataset()
+
+  const root = rdf.blankNode()
   const pointer = rdf.clownface({ term: root, dataset })
   const quads = []
-  quads.push(rdf.quad(root, ns.ex.label, rdf.literal('ROOT')))
+  pointer.addOut(ns.rdf.type,ns.mark.Root)
 
   let headersStack = []
   astNode.children.reduce((currentUri, astNode) => {

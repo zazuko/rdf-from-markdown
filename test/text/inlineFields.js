@@ -16,7 +16,7 @@ const markdown = [
 
 expect.extend({ toMatchSnapshot })
 
-describe('extractInlineFields -->', async function () {
+describe('extractInlineFields', async function () {
   for (const current of markdown) {
     it(current, async function () {
 
@@ -27,7 +27,7 @@ describe('extractInlineFields -->', async function () {
   }
 })
 
-describe('removeInlineFields -->', async function () {
+describe('removeInlineFields', async function () {
   for (const current of markdown) {
     it(current, async function () {
 
