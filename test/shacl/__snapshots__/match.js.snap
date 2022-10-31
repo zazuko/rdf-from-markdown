@@ -16,32 +16,50 @@ exports[`match can use a taxonomy (recursive patterns) 1`] = `
 	ex:hasChildren <http://example.org/named/2> .
 
 <http://example.org/named/2> a ex:Thing ;
-	ex:hasChildren <http://example.org/named/3>, <http://example.org/named/7> ;
-	rdf:label \\"Things\\" .
+	ex:hasChildren <http://example.org/named/3>, <http://example.org/named/8> ;
+	schema:name \\"Things\\" .
 
 <http://example.org/named/3> a ex:Thing ;
-	ex:hasChildren <http://example.org/named/4>, <http://example.org/named/6> ;
-	rdf:label \\"Food\\" .
+	ex:hasChildren <http://example.org/named/4>, <http://example.org/named/6>, <http://example.org/named/7> ;
+	schema:name \\"Food\\" .
 
 <http://example.org/named/4> a ex:Thing ;
 	ex:hasChildren <http://example.org/named/5> ;
-	rdf:label \\"Red\\" .
+	schema:name \\"Red\\" .
 
 <http://example.org/named/5> a ex:Thing ;
-	rdf:label \\"Tomato\\" .
+	schema:name \\"Tomato\\" .
 
 <http://example.org/named/6> a ex:Thing ;
-	rdf:label \\"Green\\" .
+	schema:name \\"Green\\" .
 
 <http://example.org/named/7> a ex:Thing ;
-	ex:hasChildren <http://example.org/named/8>, <http://example.org/named/9> ;
-	rdf:label \\"Tools\\" .
+	schema:name \\"Lettuce\\" .
 
 <http://example.org/named/8> a ex:Thing ;
-	rdf:label \\"Metal\\" .
+	ex:hasChildren <http://example.org/named/9>, <http://example.org/named/10>, <http://example.org/named/11>, <http://example.org/named/12>, <http://example.org/named/13>, <http://example.org/named/14>, <http://example.org/named/15> ;
+	schema:name \\"Tools\\" .
 
 <http://example.org/named/9> a ex:Thing ;
-	rdf:label \\"Wood\\" .
+	schema:name \\"Metal\\" .
+
+<http://example.org/named/10> a ex:Thing ;
+	schema:name \\"* Screwdriver\\" .
+
+<http://example.org/named/11> a ex:Thing ;
+	schema:name \\"* Hammer\\" .
+
+<http://example.org/named/12> a ex:Thing ;
+	schema:name \\"Wood\\" .
+
+<http://example.org/named/13> a ex:Thing ;
+	schema:name \\"1\\" .
+
+<http://example.org/named/14> a ex:Thing ;
+	schema:name \\"2\\" .
+
+<http://example.org/named/15> a ex:Thing ;
+	schema:name \\"3\\" .
 
 "
 `;
@@ -62,12 +80,12 @@ exports[`match produces quads using embedded tag 1`] = `
 	schema:name \\"Pancake maker\\" ;
 	ex:assignment <http://example.org/named/2>, <http://example.org/named/3> ;
 	ex:purpose \\"To make the best Pancakes in the world\\" ;
-	ex:tasks \\"Mix ingredients\\", \\"Heat the pan\\", \\"Prepare the Pancakes\\", \\"And a paragraph, explaining even more things\\" .
+	ex:tasks \\"And a paragraph, explaining even more things\\", \\"Mix ingredients\\", \\"Heat the pan\\", \\"Prepare the Pancakes\\" .
 
-<http://example.org/named/2> rdf:label \\"Bob\\" ;
+<http://example.org/named/2> schema:name \\"Bob\\" ;
 	ex:action \\"prepare\\" .
 
-<http://example.org/named/3> rdf:label \\"Alice\\" ;
+<http://example.org/named/3> schema:name \\"Alice\\" ;
 	ex:action \\"cook\\" .
 
 <http://example.org/named/4> a ex:Role ;
@@ -76,7 +94,7 @@ exports[`match produces quads using embedded tag 1`] = `
 	ex:purpose \\"Sell the Pancakes to the customers\\" ;
 	ex:tasks \\"Coordination of Pancake economic activities\\", \\"Advertise the Pancakes\\" .
 
-<http://example.org/named/5> rdf:label \\"Charlie\\" .
+<http://example.org/named/5> schema:name \\"Charlie\\" .
 
 "
 `;

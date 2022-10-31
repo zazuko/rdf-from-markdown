@@ -12,7 +12,9 @@ ex:categoryShape a sh:NodeShape;
   mark:matchType mark:Root;
   sh:class ex:Thing;
   sh:property [ a sh:PropertyShape;
-    mark:matchAll mark:header;
+    mark:matchHeader mark:any;
+    mark:include mark:header;
+    mark:include mark:listItem;
     sh:path ex:hasChildren;
     sh:nodeKind sh:IRI;
     sh:node ex:categoryShape

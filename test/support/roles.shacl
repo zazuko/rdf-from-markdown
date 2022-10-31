@@ -13,24 +13,26 @@ ex:roleShape a sh:NodeShape;
       sh:class ex:Role;
       sh:name "Role";
       sh:property [ a sh:PropertyShape;
-                    sh:path rdf:type;
-                    sh:in(ex:Role)
-                  ],
-                  [ a sh:PropertyShape;
                     sh:name "Assignment";
                     sh:path ex:assignment;
                     mark:matchHeader "Who";
+                    mark:include mark:item;
+                    mark:include mark:listItem;
                     sh:nodeKind sh:IRI
                   ],
                   [ a sh:PropertyShape;
                     sh:name "Purpose";
                     sh:path ex:purpose;
                     mark:matchHeader "Purpose";
+                    mark:include mark:item;
+                    mark:include mark:listItem;
                     sh:nodeKind sh:Literal
                   ],
                   [ a sh:PropertyShape;
                     sh:name "Task";
                     mark:matchHeader "Tasks";
+                    mark:include mark:item;
+                    mark:include mark:listItem;
                     sh:path ex:tasks;
                     sh:nodeKind sh:Literal
                   ].

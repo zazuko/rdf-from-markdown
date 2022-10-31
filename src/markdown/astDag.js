@@ -42,10 +42,10 @@ async function getAstDag ({ astNode, fullText }) {
     } else {
       if (astNode.type === 'list') {
         for (const text of getList({ astNode: astNode, fullText: fullText })) {
-          quads.push(rdf.quad(currentUri, ns.mark.text, rdf.literal(text)))
+          quads.push(rdf.quad(currentUri, ns.mark.listItem, rdf.literal(text)))
         }
       } else if (astNode.type === 'paragraph') {
-        quads.push(rdf.quad(currentUri, ns.mark.text, rdf.literal(text)))
+        quads.push(rdf.quad(currentUri, ns.mark.item, rdf.literal(text)))
       }
     }
     return currentUri

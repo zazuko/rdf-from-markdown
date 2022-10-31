@@ -18,21 +18,21 @@ _:b19 a mark:Root ;
 			mark:contains [
 				mark:contains [
 					mark:header \\"#### Tomato\\" ;
-					mark:text \\"A tomato most of the time is red in Europe\\" ;
+					mark:item \\"A tomato most of the time is red in Europe\\" ;
 				] ;
 				mark:header \\"### Red\\" ;
 			], [
 				mark:header \\"### Green\\" ;
-				mark:text \\"- Lettuce\\" ;
+				mark:listItem \\"- Lettuce\\" ;
 			] ;
 			mark:header \\"## Food\\" ;
 		], [
 			mark:contains [
 				mark:header \\"### Metal\\" ;
-				mark:text \\"* Screwdriver\\", \\"* Hammer\\" ;
+				mark:listItem \\"* Screwdriver\\", \\"* Hammer\\" ;
 			], [
 				mark:header \\"### Wood\\" ;
-				mark:text \\"- 1\\", \\"- 2\\", \\"- 3\\" ;
+				mark:listItem \\"- 1\\", \\"- 2\\", \\"- 3\\" ;
 			] ;
 			mark:header \\"## Tools\\" ;
 		] ;
@@ -59,43 +59,44 @@ _:b1 a mark:Root ;
 		mark:contains [
 			mark:contains [
 				mark:header \\"### Who\\" ;
-				mark:text \\"- Bob (action::prepare)\\", \\"- Alice (action::cook)\\" ;
+				mark:listItem \\"- Bob (action::prepare)\\", \\"- Alice (action::cook)\\" ;
 			], [
 				mark:header \\"### Purpose\\" ;
-				mark:text \\"To make the best Pancakes in the world\\" ;
+				mark:item \\"To make the best Pancakes in the world\\" ;
 			], [
 				mark:contains [
 					mark:header \\"#### Embedded\\" ;
 				] ;
 				mark:header \\"### Song\\" ;
-				mark:text \\"Pancakes, Pancakes !\\" ;
+				mark:item \\"Pancakes, Pancakes !\\" ;
 			], [
 				mark:header \\"### Tasks\\" ;
-				mark:text \\"- Mix ingredients\\", \\"- Heat the pan\\", \\"- Prepare the Pancakes\\", \\"And a paragraph, explaining even more things\\" ;
+				mark:item \\"And a paragraph, explaining even more things\\" ;
+				mark:listItem \\"- Mix ingredients\\", \\"- Heat the pan\\", \\"- Prepare the Pancakes\\" ;
 			] ;
 			mark:header \\"## Pancake maker #role\\" ;
-			mark:text \\"Some text for the Pancake maker\\" ;
+			mark:item \\"Some text for the Pancake maker\\" ;
 			mark:tag \\"#role\\" ;
 		], [
 			mark:contains [
 				mark:header \\"### Who\\" ;
-				mark:text \\"- Charlie\\" ;
+				mark:listItem \\"- Charlie\\" ;
 			], [
 				mark:header \\"### Purpose\\" ;
-				mark:text \\"Sell the Pancakes to the customers\\" ;
+				mark:item \\"Sell the Pancakes to the customers\\" ;
 			], [
 				mark:contains [
 					mark:header \\"# Some other topic\\" ;
-					mark:text \\"With a description\\" ;
+					mark:item \\"With a description\\" ;
 				] ;
 				mark:header \\"### Tasks\\" ;
-				mark:text \\"- Coordination of Pancake economic activities\\", \\"- Advertise the Pancakes\\" ;
+				mark:listItem \\"- Coordination of Pancake economic activities\\", \\"- Advertise the Pancakes\\" ;
 			] ;
 			mark:header \\"## Pancake seller #role\\" ;
 			mark:tag \\"#role\\" ;
 		] ;
 		mark:header \\"# Roles\\" ;
-		mark:text \\"The roles are the following: \\" ;
+		mark:item \\"The roles are the following: \\" ;
 	] .
 
 "
@@ -119,13 +120,13 @@ _:b14 a mark:Root ;
 			mark:contains [
 				mark:contains [
 					mark:header \\"# Charlie\\" ;
-					mark:text \\"Charlie is a good guy. (age :: 56)\\" ;
+					mark:item \\"Charlie is a good guy. (age :: 56)\\" ;
 				] ;
 				mark:header \\"# Alice\\" ;
-				mark:text \\"age :: 22\\" ;
+				mark:item \\"age :: 22\\" ;
 			] ;
 			mark:header \\"## Interests\\" ;
-			mark:text \\"- Eating\\" ;
+			mark:listItem \\"- Eating\\" ;
 		] ;
 		mark:header \\"# Bob (age :: 42)\\" ;
 	] .
