@@ -1,11 +1,13 @@
-# People of the world #people
+# Bob (age :: 42)
 
-## Bob (age :: 42)
+## Interests
 
-## Alice
+- Eating
+
+# Alice
 
 age :: 22
 
-## Charlie
+# Charlie
 
-Charlie is a good guy.
+Charlie is a good guy. (age :: 56)

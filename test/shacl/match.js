@@ -25,7 +25,6 @@ describe('match', async function () {
         },
       }
 
-
       const fullText = await getText(
         { path: resolve(current.markdown) })
       const shapesClownface = await getClownface(

@@ -12,19 +12,21 @@ exports[`astDag produces quads using  lists 1`] = `
 @prefix dot: <http://dottriples.org/> .
 @prefix mark: <http://markdown.org/> .
 
-_:b13 ex:label \\"ROOT\\" ;
+_:b14 ex:label \\"ROOT\\" ;
 	mark:contains [
 		mark:contains [
-			mark:header \\"## Bob (age :: 42)\\" ;
-		], [
-			mark:header \\"## Alice\\" ;
-			mark:text \\"age :: 22\\" ;
-		], [
-			mark:header \\"## Charlie\\" ;
-			mark:text \\"Charlie is a good guy.\\" ;
+			mark:contains [
+				mark:contains [
+					mark:header \\"# Charlie\\" ;
+					mark:text \\"Charlie is a good guy. (age :: 56)\\" ;
+				] ;
+				mark:header \\"# Alice\\" ;
+				mark:text \\"age :: 22\\" ;
+			] ;
+			mark:header \\"## Interests\\" ;
+			mark:text \\"- Eating\\" ;
 		] ;
-		mark:header \\"# People of the world #people\\" ;
-		mark:tag \\"#people\\" ;
+		mark:header \\"# Bob (age :: 42)\\" ;
 	] .
 
 "
@@ -52,6 +54,9 @@ _:b1 ex:label \\"ROOT\\" ;
 				mark:header \\"### Purpose\\" ;
 				mark:text \\"To make the best Pancakes in the world\\" ;
 			], [
+				mark:contains [
+					mark:header \\"#### Embedded\\" ;
+				] ;
 				mark:header \\"### Song\\" ;
 				mark:text \\"Pancakes, Pancakes !\\" ;
 			], [

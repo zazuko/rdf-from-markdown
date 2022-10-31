@@ -9,9 +9,9 @@
 @prefix mark: <http://markdown.org/>.
 
 ex:roleShape a sh:NodeShape;
+      mark:matchHashTag "#role";
       sh:class ex:Role;
       sh:name "Role";
-      mark:matchHashTag "#role";
       sh:property [ a sh:PropertyShape;
                     sh:path rdf:type;
                     sh:in(ex:Role)
