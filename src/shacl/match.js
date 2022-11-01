@@ -120,22 +120,22 @@ function getQuadsFromInline ({ uri, literal, shapes }) {
   return result
 }
 
-function getShapesByProperty ({ property, value, shapes }) {
+function getShapesByProperty ({ property, value, dataset }) {
   const matches = []
-  for (const current of shapes.dataset.match(null, property, value)) {
-    matches.push(shapes.node(current.subject))
+  for (const current of dataset.match(null, property, value)) {
+    matches.push(rdf.clownface({dataset,term:current.subject}))
   }
   return matches
 }
 
-function getShapesByTag ({ tag, shapes }) {
+function getShapesByTag ({ tag, dataset }) {
   return getShapesByProperty(
-    { property: ns.mark.matchHashTag, value: tag, shapes })
+    { property: ns.mark.matchHashTag, value: tag, dataset })
 }
 
-function getShapesByType ({ type, shapes }) {
+function getShapesByType ({ type, dataset }) {
   return getShapesByProperty(
-    { property: ns.mark.matchType, value: type, shapes })
+    { property: ns.mark.matchType, value: type, dataset })
 }
 
 const defaultUriResolver = {
@@ -145,12 +145,12 @@ const defaultUriResolver = {
 }
 
 function doShaclMatch ({
-  astPointer, shapes, uriResolver = defaultUriResolver,
+  astPointer, shapesDataset, uriResolver = defaultUriResolver,
 }) {
   const result = []
 
   for (const type of astPointer.out(ns.rdf.type).terms) {
-    for (const shapeRoot of getShapesByType({ type, shapes })) {
+    for (const shapeRoot of getShapesByType({ type, dataset:shapesDataset })) {
       const uri = uriResolver.mintUri(type)
       const quads = produceQuads(
         { uri, astPointer, shapePointer: shapeRoot, uriResolver })
@@ -160,7 +160,7 @@ function doShaclMatch ({
 
   // Check if a tag is found
   for (const tag of astPointer.out(ns.mark.tag).terms) {
-    for (const shapeRoot of getShapesByTag({ tag, shapes })) {
+    for (const shapeRoot of getShapesByTag({ tag, dataset:shapesDataset })) {
       const uri = uriResolver.mintUri(tag)
       const quads = produceQuads(
         { uri, astPointer, shapePointer: shapeRoot, uriResolver })
@@ -171,7 +171,7 @@ function doShaclMatch ({
   // Recursively process the tree
   for (const term of astPointer.out(ns.mark.contains).terms) {
     const quads = doShaclMatch(
-      { astPointer: astPointer.node(term), shapes, uriResolver })
+      { astPointer: astPointer.node(term), shapesDataset, uriResolver })
     result.push(...quads)
   }
 

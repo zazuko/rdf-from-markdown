@@ -18,4 +18,29 @@ async function prettyPrint (dataset, prefixes = {}) {
   return await getStream(stream)
 }
 
-export { prettyPrint }
+import { readFile } from 'fs/promises'
+import { Parser } from 'n3'
+import rdf from 'rdf-ext'
+
+async function getText ({ path }) {
+  const buffer = await readFile(path, 'utf8')
+  return buffer.toString()
+}
+
+async function toQuads ({ path }) {
+  try {
+    const parser = new Parser()
+    const str = await getText({ path })
+    return parser.parse(str)
+  } catch (error) {
+    throw Error(`${path}\n${error.message}`)
+  }
+}
+
+async function getDataset ({ path }) {
+  const quads = await toQuads({ path })
+  return rdf.dataset().addAll(quads)
+}
+
+export { getText, getDataset, prettyPrint }
+
