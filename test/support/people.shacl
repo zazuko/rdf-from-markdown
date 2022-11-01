@@ -12,7 +12,7 @@ ex:peopleShape a sh:NodeShape;
   mark:matchType mark:Root;
   sh:class ex:People;
   sh:property [ a sh:PropertyShape;
-    mark:matchHeader mark:any;
+    mark:attachToHeader mark:all;
     mark:include mark:header;
     sh:path schema:hasPart;
     sh:nodeKind sh:IRI;
@@ -20,14 +20,16 @@ ex:peopleShape a sh:NodeShape;
   ].
 
 ex:personShape a sh:NodeShape;
+
       sh:name "Person";
       sh:class ex:Person;
       sh:property [ a sh:PropertyShape;
-                    sh:path ex:name;
+                    mark:attachToHeader mark:all;
+                    sh:path ex:content;
                     sh:name "name";
-                    mark:include mark:item;
                     mark:include mark:listItem;
-                    sh:nodeKind sh:Literal
+                    mark:include mark:item;
+                    sh:nodeKind sh:IRI
       ].
 
 

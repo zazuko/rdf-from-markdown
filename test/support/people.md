@@ -1,5 +1,7 @@
 # Alice
 
+## Properties
+
 age :: 22
 
 # Bob (age :: 42)
@@ -9,5 +11,7 @@ age :: 22
 - Eating
 
 # Charlie
+
+## Description
 
 Charlie is a good guy. (age :: 56)

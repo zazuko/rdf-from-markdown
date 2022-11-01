@@ -15,7 +15,7 @@ ex:roleShape a sh:NodeShape;
       sh:property [ a sh:PropertyShape;
                     sh:name "Assignment";
                     sh:path ex:assignment;
-                    mark:matchHeader "Who";
+                    mark:attachToHeader "Who";
                     mark:include mark:item;
                     mark:include mark:listItem;
                     sh:nodeKind sh:IRI
@@ -23,14 +23,14 @@ ex:roleShape a sh:NodeShape;
                   [ a sh:PropertyShape;
                     sh:name "Purpose";
                     sh:path ex:purpose;
-                    mark:matchHeader "Purpose";
+                    mark:attachToHeader "Purpose";
                     mark:include mark:item;
                     mark:include mark:listItem;
                     sh:nodeKind sh:Literal
                   ],
                   [ a sh:PropertyShape;
                     sh:name "Task";
-                    mark:matchHeader "Tasks";
+                    mark:attachToHeader "Tasks";
                     mark:include mark:item;
                     mark:include mark:listItem;
                     sh:path ex:tasks;

@@ -12,7 +12,7 @@ exports[`astDag can use a taxonomy (recursive patterns) 1`] = `
 @prefix dot: <http://dottriples.org/> .
 @prefix mark: <http://markdown.org/> .
 
-_:b19 a mark:Root ;
+_:b21 a mark:Root ;
 	mark:contains [
 		mark:contains [
 			mark:contains [
@@ -115,8 +115,11 @@ exports[`astDag produces quads using lists 1`] = `
 
 _:b14 a mark:Root ;
 	mark:contains [
+		mark:contains [
+			mark:header \\"## Properties\\" ;
+			mark:item \\"age :: 22\\" ;
+		] ;
 		mark:header \\"# Alice\\" ;
-		mark:item \\"age :: 22\\" ;
 	], [
 		mark:contains [
 			mark:header \\"## Interests\\" ;
@@ -124,8 +127,11 @@ _:b14 a mark:Root ;
 		] ;
 		mark:header \\"# Bob (age :: 42)\\" ;
 	], [
+		mark:contains [
+			mark:header \\"## Description\\" ;
+			mark:item \\"Charlie is a good guy. (age :: 56)\\" ;
+		] ;
 		mark:header \\"# Charlie\\" ;
-		mark:item \\"Charlie is a good guy. (age :: 56)\\" ;
 	] .
 
 "

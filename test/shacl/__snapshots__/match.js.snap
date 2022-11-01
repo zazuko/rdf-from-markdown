@@ -112,17 +112,28 @@ exports[`match produces quads using lists 1`] = `
 @prefix mark: <http://markdown.org/> .
 
 <http://example.org/named/1> a ex:People ;
-	schema:hasPart <http://example.org/named/2>, <http://example.org/named/3>, <http://example.org/named/4> .
+	schema:hasPart <http://example.org/named/2>, <http://example.org/named/4>, <http://example.org/named/6> .
 
 <http://example.org/named/2> a ex:Person ;
-	schema:name \\"Alice\\" .
+	schema:name \\"Alice\\" ;
+	ex:content <http://example.org/named/3> .
 
-<http://example.org/named/3> a ex:Person ;
-	schema:name \\"Bob\\" ;
-	ex:hasAge \\"42\\" .
+<http://example.org/named/3> schema:name \\"\\" ;
+	ex:hasAge \\"22\\" .
 
 <http://example.org/named/4> a ex:Person ;
-	schema:name \\"Charlie\\" .
+	schema:name \\"Bob\\" ;
+	ex:content <http://example.org/named/5> ;
+	ex:hasAge \\"42\\" .
+
+<http://example.org/named/5> schema:name \\"Eating\\" .
+
+<http://example.org/named/6> a ex:Person ;
+	schema:name \\"Charlie\\" ;
+	ex:content <http://example.org/named/7> .
+
+<http://example.org/named/7> schema:name \\"Charlie is a good guy.\\" ;
+	ex:hasAge \\"56\\" .
 
 "
 `;
