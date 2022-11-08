@@ -4,7 +4,7 @@ import toMatchSnapshot from 'expect-mocha-snapshot'
 import { getAstDag } from '../../src/markdown/astDag.js'
 import { createMarkdownParser } from '../../src/markdown/markdownParser.js'
 import { prettyPrint } from '../util.js'
-import { tests } from '../tests.js'
+import tests from '../tests.js'
 
 expect.extend({ toMatchSnapshot })
 

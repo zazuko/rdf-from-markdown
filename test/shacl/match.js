@@ -8,7 +8,7 @@ import ns from '../../src/namespaces.js'
 import { doShaclMatch } from '../../src/shacl/match.js'
 
 import { prettyPrint, getDataset } from '../util.js'
-import { tests } from '../tests.js'
+import tests from '../tests.js'
 
 expect.extend({ toMatchSnapshot })
 
