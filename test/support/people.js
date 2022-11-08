@@ -1,4 +1,24 @@
-@prefix code: <https://code.described.at/>.
+export default {
+  title: 'produces quads using lists',
+  markdown: `# Alice
+
+## Properties
+
+age :: 22
+
+# Bob (age :: 42)
+
+## Interests
+
+- Eating
+
+# Charlie
+
+## Description
+
+Charlie is a good guy. (age :: 56)
+  `, shacl: `
+  @prefix code: <https://code.described.at/>.
 @prefix dash: <http://datashapes.org/dash#>.
 @prefix hydra: <http://www.w3.org/ns/hydra/core#>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
@@ -37,3 +57,6 @@ ex:ageProp a mark:InlineMatcher;
        mark:matchInlineProperty "age";
        sh:path ex:hasAge;
        sh:nodeKind sh:Literal.
+
+  `,
+}
