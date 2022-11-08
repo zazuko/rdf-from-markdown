@@ -1,5 +1,5 @@
 import { ItemType } from 'golden-layout'
-import { MARKDOWN,  SHACL, TURTLE  } from './config.js'
+import { MARKDOWN, SHACL, TURTLE } from './config.js'
 
 const contentLayout = {
   root: {
@@ -21,18 +21,20 @@ const contentLayout = {
 
       },
       {
-        type: 'component',
-        header: { show: 'top', popout: false },
-        width: 30,
-        componentState: undefined,
-        ...SHACL,
-      },
-      {
-        type: 'component',
-        header: { show: 'top', popout: false },
-        width: 30,
-        componentState: undefined,
-        ...TURTLE,
+        type: ItemType.column, width: 80, content: [
+          {
+            type: 'component',
+            header: { show: 'top', popout: false },
+            height: 50,
+            componentState: undefined, ...TURTLE,
+
+          }, {
+            type: 'component',
+            header: { show: 'top', popout: false },
+            height: 50,
+            componentState: undefined, ...SHACL,
+          }],
+
       },
     ],
   },
