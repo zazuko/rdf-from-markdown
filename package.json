@@ -34,7 +34,10 @@
     "Tools for thought",
     "Knowledge management"
   ],
-  "author": "Cristian Vasquez",
+  "files": [
+    "src"
+  ],
+  "author": "Zazuko",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/zazuko/rdf-markdown-shacl/issues"
